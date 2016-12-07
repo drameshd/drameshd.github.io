@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>WebRTC Video Broadcasting</title>
+        <title>Thank You</title>
 
         <script>
             if(!location.hash.replace('#', '').length) {
@@ -69,6 +69,13 @@
                 border-left: 1px solid rgb(189, 189, 189);
                 padding: .5em;
             }
+            html { 
+              background: url(bg.jpg) no-repeat center center fixed; 
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover;
+            }
         </style>
         <script>
             document.createElement('article');
@@ -85,16 +92,11 @@
     </head>
 
     <body>
-        <article>
-            <header style="text-align: center;">
-                <h1>
-                    WebRTC Video Broadcasting
-                </h1>
-            </header>
+        <article style="padding:0;margin: 1em auto 0">
 
             <!-- copy this <section> and next <script> -->
-            <section class="experiment">
-                <section>
+            <section class="experiment" style="margin:0">
+                <section style="display:none">
                     <select id="broadcasting-option">
                         <option>Audio + Video</option>
                         <option>Only Audio</option>
@@ -149,7 +151,7 @@
                         if (typeof roomsList === 'undefined') roomsList = document.body;
 
                         var tr = document.createElement('tr');
-                        tr.innerHTML = '<td><strong>' + room.roomName + '</strong> is broadcasting his media!</td>' +
+                        tr.innerHTML = '<td><strong>' + room.roomName + '</strong> is live!</td>' +
                             '<td><button class="join">Join</button></td>';
                         roomsList.insertBefore(tr, roomsList.firstChild);
 
@@ -158,7 +160,7 @@
                         joinRoomButton.setAttribute('data-roomToken', room.broadcaster);
                         joinRoomButton.onclick = function() {
                             this.disabled = true;
-
+                            document.getElementById('rooms-list').style.display = "none";
                             var broadcaster = this.getAttribute('data-broadcaster');
                             var roomToken = this.getAttribute('data-roomToken');
                             broadcastUI.joinRoom({
